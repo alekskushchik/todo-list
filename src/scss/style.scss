@@ -1,0 +1,299 @@
+body {
+  background-image: url("../img/background_2.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Lato, sans-serif;
+  height: 100vh;
+  overflow: scroll;
+}
+
+.container {
+  display: block;
+  max-width: 600px;
+  margin: 100px auto 0;
+
+  h1 {
+    text-align: center;
+  }
+
+  .buttons {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+#overlay {
+  position: fixed;
+  display: none; /* Hidden by default */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.create-task {
+  width: 320px;
+  padding: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, .5);
+
+  #close-button {
+    position: absolute;
+    display: block;
+    right: 2%;
+    top: -4%;
+    color: red;
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+
+.search-task {
+  opacity: 1;
+  padding: 20px;
+  transition: all .3s linear;
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  input#searchInput {
+    margin-bottom: 15px;
+  }
+
+}
+
+label {
+  margin: 10px 0;
+  display: block;
+  color: #333;
+  font-weight: 700;
+}
+
+input[type="text"] {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-size: 16px;
+  line-height: 16px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: Lato, sans-serif;
+  color: #313131;
+
+  &::placeholder {
+    color: #c9c9c9
+  }
+
+  &:focus {
+    border-color: #09a20a;
+    outline: 0;
+  }
+}
+
+textarea {
+  width: 90%;
+  margin-bottom: 20px;
+  display: block;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 12px;
+  color: #313131;
+
+  &:focus {
+    border-color: #09a20a;
+    outline: 0;
+  }
+}
+
+button {
+  width: 60px;
+  margin: 0 15px;
+  padding: 10px 40px;
+  border: 1px solid #146da8;
+  border-radius: 4px;
+  background: #2980b9;
+  text-align: center;
+  font-size: 14px;
+  box-sizing: content-box;
+  color: #fff;
+  cursor: pointer;
+}
+
+.tasks-container {
+  max-width: 600px;
+  min-height: 150px;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #ecf0f1;
+  box-shadow: 1px 1px 2px grey;
+
+  h3 {
+    border-bottom: 2px solid black;
+    border-radius: 3px;
+    text-align: right;
+  }
+
+  form {
+    position: relative;
+    display: inline-block;
+
+    select {
+      box-sizing: border-box;
+      outline: 0;
+      width: 165px;
+      height: 32px;
+      padding: 3px;
+    }
+  }
+
+  ul {
+    padding: 0;
+    position: relative;
+
+    li {
+      position: relative;
+      margin: 0 auto 10px;
+      list-style: none;
+      padding: 10px;
+      border-radius: 5px;
+      background: #fff;
+      border-bottom: 1px solid rgba(44, 62, 80, 0.3);
+      box-shadow: 1px 2px 3px rgba(44, 62, 80, 0.1);
+      color: #313131;
+
+      &.editMode {
+        input[type=text] {
+          display: block !important;
+        }
+
+        label {
+          display: none !important;
+        }
+      }
+
+      label[data-status='Pending'] {
+        margin: 0;
+        display: inline-block;
+      }
+
+      label[data-status='Done'] {
+        &::before {
+          content: " ✓ ";
+        }
+
+        margin: 0;
+        display: inline-block;
+        text-decoration: line-through;
+
+      }
+
+      input[type=text] {
+        display: none;
+      }
+
+      .status {
+        display: inline-block;
+        padding: 2px 5px;
+        border-radius: 4px;
+        position: absolute;
+        right: 2%;
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        background-color: #2980b9;
+      }
+
+      .buttons-container {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+
+        button.edit,
+        button.delete,
+        button.done,
+        button.hold,
+        button.disabled,
+        button.cancel {
+          margin: 0 5px;
+          border: none;
+          padding: 8px 12px;
+          font-size: 0.75rem;
+          width: 23%;
+          box-sizing: border-box;
+        }
+
+        button.edit {
+          background: #008CBA;
+        }
+
+        button.delete {
+          background: #f44336;
+        }
+
+        button.done {
+          background: #4CAF50;
+        }
+
+        button.hold {
+          background: #555555;
+        }
+
+        button.disabled {
+          border: 1px solid #999999;
+          background: #cccccc;
+          color: #666666;
+          cursor: not-allowed;
+        }
+
+
+      }
+
+      .edit-mode {
+        display: none;
+        justify-content: center;
+
+        button.cancel {
+          border: 1px solid #f03000;
+          background: #f03000;
+        }
+      }
+
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .tasks-container ul li {
+    .buttons-container {
+      flex-wrap: wrap;
+
+      button.edit,
+      button.delete,
+      button.done,
+      button.hold,
+      button.disabled,
+      button.cancel {
+        width: 45%;
+        font-size: 12px;
+        margin: 5px 5px;
+      }
+    }
+  }
+}

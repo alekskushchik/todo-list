@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gulp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
+<div class="container">
+    <h1><i class="fas fa-clipboard-list"></i> My TODO App</h1>
+    <div class="buttons">
+        <button class="buttons__create">Add new</button>
+        <button class="buttons__search">Search</button>
+    </div>
+    <div id="overlay">
+        <div class="create-task">
+            <span id="close-button">&Cross;</span>
+            <label for="todo">Title</label>
+            <input id="todo" type="text"
+                   placeholder="Enter title of the task here"
+                   required>
+            <label for="task-description">Description</label>
+            <textarea id="task-description"
+                      rows="7" placeholder="Enter short description here"></textarea>
+            <button id="add-task" type="submit">Add</button>
+        </div>
+    </div>
+
+    <div class="search-task hidden">
+        <input id="searchInput" type="text" placeholder="Search by title" required>
+    </div>
+
+</div>
+<div class="tasks-container">
+    <h3>List of tasks</h3>
+    <form class="select" action="">
+        <select class="bulk-actions">
+            <option disabled selected>Bulk actions </option>
+            <option value="hold/unhold">Hold/Unhold</option>
+            <option value="mark-as-done">Mark as done</option>
+            <option value="remove-all">Remove</option>
+        </select>
+        <select class="filter-todos">
+            <option disabled selected>Sort</option>
+            <option value="by-status">By status</option>
+            <option value="by-title">By title</option>
+        </select>
+    </form>
+    <ul id="pending-tasks"></ul>
+</div>
+<script src="js/script.min.js"></script>
+</body>
+</html>
